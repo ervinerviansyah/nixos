@@ -1,12 +1,8 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ 
       ./hardware-configuration.nix
     ];
 	
@@ -14,12 +10,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  # Hostname
+  networking.hostName = "nixos"; 
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -46,14 +38,14 @@
   services.xserver.enable = true;
 
   # Display Manager (Pilih Salah Satu)
-  services.xserver.displayManager.gdm.enable = true;
-  services.displayManager.sddm.enable = false;
-  services.xserver.displayManager.lightdm.enable = false;
+    services.xserver.displayManager.gdm.enable = true;
+    #services.displayManager.sddm.enable = true;
+    #services.xserver.displayManager.lightdm.enable = true;
   
   # Desktop Environment (Pilih Salah Satu)
-  services.xserver.desktopManager.gnome.enable = true;
-  services.desktopManager.plasma6.enable = false;
-  services.xserver.desktopManager.xfce.enable = false;
+    services.xserver.desktopManager.gnome.enable = true;
+    #services.desktopManager.plasma6.enable = true;
+    #services.xserver.desktopManager.xfce.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -69,8 +61,8 @@
 
   # Scanner
   hardware.sane = {
-   enable = true;
-   extraBackends = [ pkgs.epsonscan2 ];
+  enable = true;
+  extraBackends = [ pkgs.epsonscan2 ];
   };
 
   # Enable sound with pipewire.
@@ -81,84 +73,51 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Define a user account.
   users.users.ervin = {
     isNormalUser = true;
     description = "Ervin Erviansyah";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-    #  thunderbird
     ];
     shell = pkgs.fish;
   };
 
 # Allow unfree packages
-nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
 
-   # Install steam
+# Install steam
   programs.steam.enable = true;
 
- # Flakes
+# Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+# System Packages
   environment.systemPackages = with pkgs; [
   
   ];
 
-  # Default Text Editor
-  #environment.variables.EDITOR = "neovim";
+# Enable the OpenSSH daemon.
+  services.openssh.enable = true;
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-   services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+# Firewall
+  networking.firewall.enable = true;
   system.copySystemConfiguration = true;
 
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.11"; # Did you read the comment?
+# System Version
+  system.stateVersion = "24.11";
 
   # Flatpak
   services.flatpak.enable = true;
 
   # Automatic Garbage Collection
   nix.gc = {
-                automatic = true;
-                dates = "weekly";
-                options = "--delete-older-than 7d";
-        };
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
 
   # Zram
   zramSwap = {
@@ -173,10 +132,11 @@ nixpkgs.config.allowUnfree = true;
   # Vnstat
   services.vnstat.enable = true;
 
+# Hardware
   hardware.graphics = {
    enable = true;
    extraPackages = with pkgs; [
-     rocmPackages.clr.icd
+    rocmPackages.clr.icd
     ];
   };
 
