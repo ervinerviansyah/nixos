@@ -53,6 +53,7 @@ in
       kdePackages.kdenlive
       vlc
       handbrake
+      synfigstudio
 
       # Essential Sistem
       htop
@@ -123,16 +124,18 @@ in
       unstable.libreoffice-fresh
       zotero
       logseq
+      manuskript
 
       # Game
       lutris
       minecraft
       prismlauncher
+      godot_4
 
       # Fonts
       corefonts
       vistafonts
-      nerdfonts
+      nerdfonts  
 
     # Informasi   
     # # It is sometimes useful to fine-tune packages, for example, by applying
