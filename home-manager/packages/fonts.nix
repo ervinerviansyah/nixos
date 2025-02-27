@@ -1,9 +1,9 @@
 { config, pkgs, ... }:
 {
     home.packages = with pkgs; [
-        corefonts
-        vistafonts
-        nerdfonts  
+        #corefonts
+        #vistafonts
+        #nerdfonts  
     ];
 
     fonts.fontconfig.enable = true;

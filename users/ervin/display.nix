@@ -7,22 +7,9 @@
     services.xserver.enable = true;
 
     # Display Manager
-    services.xserver.displayManager.gdm.enable = false;
+    services.xserver.displayManager.gdm.enable = true;
 
     # Desktop Environment
-    services.xserver.desktopManager.gnome.enable = false;
+    services.xserver.desktopManager.gnome.enable = true;
 
-# If you prefer to use Hyprland, you can enable it here.
-    programs.hyprland = {
-        enable = true;
-        withUWSM = true;
-        xwayland.enable = true;
-    };
-
-    #security.pam.services.hyprlock = {
-    #    enable = true;
-    #    lockOnSleep = true;
-    #    lockOnHibernate = true;
-    #    lockOnLid = true;
-    #};
 }

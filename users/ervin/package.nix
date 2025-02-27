@@ -1,9 +1,9 @@
 {
     # Steam
-    programs.steam.enable = true;
+    programs.steam.enable = false;
 
     # Flatpak
-    services.flatpak.enable = true;
+    services.flatpak.enable = false;
 
     # System Packages  
     environment.systemPackages =  [

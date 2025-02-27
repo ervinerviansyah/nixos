@@ -1,10 +1,10 @@
 { pkgs, ... }:
 {
     home.packages = with pkgs; [
-        obs-studio
-        kdenlive
-        vlc
-        handbrake
-        synfigstudio
+        #obs-studio
+        #kdenlive
+        #vlc
+        #handbrake
+        #synfigstudio
     ];
 }
