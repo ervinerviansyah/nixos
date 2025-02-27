@@ -34,7 +34,7 @@
     in {
     nixosConfigurations = nixpkgs.lib.foldl' (configs: host:
       configs // {
-        "${host.hostname}" = makeSystem {
+        "nixos" = makeSystem {
           inherit (host) hostname stateVersion;
         };
       }) {} hosts;
