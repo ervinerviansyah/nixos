@@ -8,7 +8,6 @@
 	neofetch
 	git
 	vnstat
-	neovim
 	wget
     ];
 }
