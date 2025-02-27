@@ -1,16 +1,14 @@
 { config, pkgs, ... }:
 
 {
-  imports =
+  # Contoh konfigurasi minimal
+  system.stateVersion = "24.11";
+  networking.hostName = "nixos";
+
+  # Modules
+   imports =
     [ 
       ./hardware-configuration.nix
-      ../../user/ervin
+      ../../users/ervin
     ];
-	
-  # Hostname
-  networking.hostName = hostname; 
-
-  # System Version
-  system.stateVersion = stateVersion;
-
 }
