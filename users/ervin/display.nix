@@ -19,10 +19,10 @@
         xwayland.enable = true;
     };
 
-    security.pam.services.hyprlock = {
-        enable = true;
-        lockOnSleep = true;
-        lockOnHibernate = true;
-        lockOnLid = true;
-    };
+    #security.pam.services.hyprlock = {
+    #    enable = true;
+    #    lockOnSleep = true;
+    #    lockOnHibernate = true;
+    #    lockOnLid = true;
+    #};
 }

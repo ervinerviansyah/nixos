@@ -8,7 +8,7 @@
         ./environment.nix
         ./flakes.nix
         ./gc.nix
-        ./home-manager.nix
+        #./home-manager.nix
         ./kernel.nix
         ./keymap.nix
         ./locale.nix

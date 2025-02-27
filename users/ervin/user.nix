@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, user, ... }:
 
 {
   # Pengaturan user dilakukan di level sistem
@@ -6,9 +6,9 @@
     isNormalUser = true;
     description = "Ervin Erviansyah";
     extraGroups = [ "wheel" "networkmanager" ];
-    shell = pkgs.fish;  # Shell diatur di sini
+    #shell = pkgs.fish;  # Shell diatur di sini
   };
 
   # Aktifkan Fish secara global (opsional)
-  environment.shells = [ pkgs.fish ];
+  #environment.shells = [ pkgs.fish ];
 }
