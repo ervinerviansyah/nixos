@@ -4,13 +4,13 @@
   imports =
     [ 
       ./hardware-configuration.nix
-      ../../user/ervin
+      ../../user/ervin/
     ];
 	
   # Hostname
-  networking.hostName = "nixos"; 
+  networking.hostName = hostname; 
 
-# System Version
-  system.stateVersion = "24.11";
+  # System Version
+  system.stateVersion = stateVersion;
 
 }
