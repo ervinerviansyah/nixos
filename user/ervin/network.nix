@@ -1,0 +1,7 @@
+{
+    network = {
+        networkmanager = {
+            enable = true;
+        };
+    };
+}
