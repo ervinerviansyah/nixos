@@ -8,9 +8,9 @@
     ];
 	
   # Hostname
-  networking.hostName = "nixos"; 
+  networking.hostName = hostname; 
 
 # System Version
-  system.stateVersion = "24.11";
+  system.stateVersion = stateVersion;
 
 }

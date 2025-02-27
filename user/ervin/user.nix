@@ -1,10 +1,12 @@
+{pkgs, user, ... }: 
 {
-    users.users.ervin = {
+    programs.fish.enable = true;
+
+    users = {
+    defaultUserShell = pkgs.fish;
+    users.${user} = {
     isNormalUser = true;
-    description = "Ervin Erviansyah";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    ];
-    shell = pkgs.fish;
+    extraGroups = [ "wheel" "networkmanager" ];
     };
+  };
 }
