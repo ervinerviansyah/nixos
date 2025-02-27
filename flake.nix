@@ -9,40 +9,24 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: let
+  outputs = { self, nixpkgs, home-manager, ... } @inputs:
+  let
     system = "x86_64-linux";
     homeStateVersion = "24.11";
     user = "ervin";
     hosts = [
       { hostname = "nixos"; stateVersion = "24.11"; }
     ];
-
-    makeSystem = { hostname, stateVersion }: nixpkgs.lib.nixosSystem {
-      system = system;
-      specialArgs = {
-        inherit inputs stateVersion hostname user;
-      };
-      modules = [
-        ./hosts/${hostname}/configuration.nix
-      ];
-    };
+    pkgs = nixpkgs.legacyPackages.${system};
 
   in {
-    nixosConfigurations = nixpkgs.lib.foldl' (configs: host:
-      configs // {
-        "${host.hostname}" = makeSystem {
-          inherit (host) hostname stateVersion;
-        };
-      }) {} hosts;
-
     homeConfigurations.${user} = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.${system};
-      extraSpecialArgs = {
-        inherit inputs homeStateVersion user;
-      };
+      inherit pkgs;
+      extraSpecialArgs = { };
       modules = [
         ./home-manager/home.nix
       ];
     };
   };
+   
 }
